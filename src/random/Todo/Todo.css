@@ -1,0 +1,9 @@
+.Todo-view {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap
+}
+
+.Todo-item + .Todo-item {
+	margin-top: 10px;
+}

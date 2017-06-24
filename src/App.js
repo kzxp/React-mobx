@@ -16,7 +16,7 @@ class App extends Component {
           Try out Mobx
         </p>
         <div className="App-body">
-          <Container text>
+          <Container text textAlign="center">
             <Todo />
           </Container>
         </div>

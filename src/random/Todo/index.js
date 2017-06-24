@@ -2,24 +2,19 @@ import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import TodoStore from './TodoStore'
 import { Form } from 'semantic-ui-react'
+import './Todo.css'
 
 const todoStore = new TodoStore()
 
-const TodoView = () => {
+const TodoView = observer(() => {
   return (
-    <div>
+    <div className="Todo-view">
       <TodoItem todoStore={todoStore} disabled={false} />
-      <TodoList todoStore={todoStore} />
-    </div>
-  )
-}
-
-const TodoList = observer(({ todoStore }) => {
-  return (
-    <div>
-      {_.map(todoStore.todos, todo => (
-        <TodoItem key={todo.id} todoStore={todoStore} {...todo} />
-      ))}
+			{
+				_.map(todoStore.todos, todo => (
+					<TodoItem key={todo.id} todoStore={todoStore} {...todo} />
+				))
+			}
     </div>
   )
 })
@@ -70,8 +65,7 @@ class TodoItem extends Component {
     const { id } = this.props
     const { title, msg, disabled } = this.state
     return (
-      <div>
-        <Form>
+        <Form className="Todo-item">
           <Form.Group>
             <Form.Input
               type="text"
@@ -107,8 +101,6 @@ class TodoItem extends Component {
                   : <Form.Button type="button" onClick={this._addToDo} content="Add" />}
           </Form.Group>
         </Form>
-
-      </div>
     )
   }
 }

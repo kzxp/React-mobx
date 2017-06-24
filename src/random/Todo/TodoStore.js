@@ -10,13 +10,16 @@ class TodoStore {
   }
 
   addTodo = ({ title, msg, modified, status }) => {
-    this.todos.push({
-      id: guid(),
-      title,
-      msg,
-      modified: Date.now(),
-      status: todoStatus.NEW
-    })
+    this.todos = [
+      {
+        id: guid(),
+        title,
+        msg,
+        modified: Date.now(),
+        status: todoStatus.NEW
+      },
+      ...this.todos
+    ]
   }
 
   editTodo = (id, { title, msg, status }) => {
