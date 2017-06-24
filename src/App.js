@@ -16,9 +16,9 @@ class App extends Component {
           Try out Mobx
         </p>
         <div className="App-body">
-					<Container text>
-          	<Todo />
-					</Container>
+          <Container text>
+            <Todo />
+          </Container>
         </div>
       </div>
     )

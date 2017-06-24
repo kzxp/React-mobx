@@ -1,12 +1,12 @@
-import { extendObservable } from "mobx";
-import { todoStatus } from "./constants";
+import { extendObservable } from 'mobx'
+import { todoStatus } from './constants'
 import { guid } from '../../utils'
 
 class TodoStore {
   constructor() {
     extendObservable(this, {
       todos: []
-    });
+    })
   }
 
   addTodo = ({ title, msg, modified, status }) => {
@@ -16,8 +16,8 @@ class TodoStore {
       msg,
       modified: Date.now(),
       status: todoStatus.NEW
-    });
-  };
+    })
+  }
 
   editTodo = (id, { title, msg, status }) => {
     this.todos = _.map(
@@ -26,12 +26,12 @@ class TodoStore {
         (todo.id === id
           ? { ...todo, title, msg, modified: Date.now(), status }
           : todo)
-    );
-  };
+    )
+  }
 
   removeTodo = id => {
-    this.todos = _.reject(this.todos, { id });
-  };
+    this.todos = _.reject(this.todos, { id })
+  }
 }
 
-export default TodoStore;
+export default TodoStore
