@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint-plugin-lodash": "^2.4.3",
     "lodash": "^4.17.4",
+    "mobx": "^3.1.16",
     "mobx-react": "^4.2.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "semantic-ui-react": "^0.68.5",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.70.0",
     "serve": "^5.2.2"
   },
   "devDependencies": {
@@ -36,7 +39,6 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.28.0",
     "jest": "20.0.3",
-    "lodash-webpack-plugin": "^0.11.4",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
@@ -62,7 +64,8 @@
       "src/**/*.{js,jsx}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js"
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest/setup.js"
     ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",

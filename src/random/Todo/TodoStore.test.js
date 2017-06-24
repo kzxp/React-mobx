@@ -1,40 +1,50 @@
-import TodoStore from './TodoStore'
+import TodoStore from './TodoStore';
+import { todoStatus } from './constants'
+import { guid } from '../../utils';
 
-const _TodoStore = new TodoStore;
-const todoStatus = {
-  NEW: 'NEW',
-  ONGOING: 'ONGOING',
-  COMPLETED: 'COMPLETED'
-}
+const _TodoStore = new TodoStore();
 
-describe('Todo store', () => {
+describe("Todo store", () => {
+  describe(".todos", () => {
+    it("get empty arrays", () => {
+      expect(_TodoStore.todos).toEqual(expect.arrayContaining([]));
+    });
+  });
 
-  describe('.todos', () => {
-    it('get empty arrays', () => {
-      expect(_TodoStore.todos).toEqual([])
-    })
-  })
-
-  describe('.addTodo', () => {
-    it('add new item to todos', () => {
+  describe(".addTodo", () => {
+    it("add new item to todos", () => {
       const todo = {
-        title: 'Hello',
-        msg: 'World',
-        modified: Date.now(),
-        status: todoStatus.NEW
-      }
-      _TodoStore.addTodo(todo)
+        title: "Hello",
+        msg: "World"
+      };
+      _TodoStore.addTodo(todo);
 
-      expect(_TodoStore.todos).toEqual(expect.arrayContaining([todo]))
-    })
-  })
+      expect(_TodoStore.todos[0]).toEqual(expect.objectContaining(todo));
+    });
+  });
 
-  describe('.removeTodo', () => {
-    it('remove item in todos', () => {
-      _TodoStore.removeTodo(0)
-      
-      expect(_TodoStore).toEqual(expect.arrayContaining([]))
-    })
-  })
+  describe(".editTodo", () => {
+    it("edit item in todos", () => {
+      const todo = _TodoStore.todos[0];
+      let editedTodo = {
+        ...todo,
+				title: 'HAHA',
+				status: todoStatus.COMPLETED,
+      };
+			delete editedTodo.modified
 
-})
+			_TodoStore.editTodo(todo.id, editedTodo);
+
+      expect(_TodoStore.todos[0]).toEqual(expect.objectContaining(editedTodo));
+    });
+  });
+
+  describe(".removeTodo", () => {
+    it("remove item in todos", () => {
+      const todo = _TodoStore.todos[0];
+      _TodoStore.removeTodo(todo.id);
+
+      expect(_TodoStore.todos).toEqual(expect.arrayContaining([]));
+    });
+  });
+});

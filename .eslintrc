@@ -1,0 +1,10 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "react"
+  ],
+  "root": true,
+  "globals": {
+    "lodash": true
+  }
+}
