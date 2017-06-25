@@ -1,8 +1,8 @@
-import TodoStore from './TodoStore'
-import { todoStatus } from './constants'
+import TodoStore from '../TodoStore'
+import { todoStatus } from '../../constants'
 import { guid } from '../../utils'
 
-const _TodoStore = new TodoStore()
+const _TodoStore = TodoStore
 
 describe('Todo store', () => {
   describe('.todos', () => {
@@ -28,10 +28,10 @@ describe('Todo store', () => {
       const todo = _TodoStore.todos[0]
       let editedTodo = {
         ...todo,
-        title: 'HAHA',
-        status: todoStatus.COMPLETED
+        title: 'HAHA'
       }
       delete editedTodo.modified
+			delete editedTodo.status
 
       _TodoStore.editTodo(todo.id, editedTodo)
 
