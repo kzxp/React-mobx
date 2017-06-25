@@ -4,6 +4,11 @@
 	justify-content: center;
 }
 
+.Todo-item .Todo-label {
+	padding: 12px 6px;
+	min-width: 90px;
+}
+
 .Todo-item + .Todo-item {
 	margin-top: 10px;
 }

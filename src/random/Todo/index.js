@@ -16,20 +16,27 @@ const TodoView = inject('todoStore')(
 )
 
 const StatusLabel = ({ status }) => {
-	let color = 'grey';
-	switch (status) {
-		case todoStatus.NEW:
-			color = 'red'
-			break;
-		case todoStatus.ONGOING:
-			color = 'yellow'
-		case todoStatus.COMPLETED:
-			color = 'green'
-			break;
-		default:
-			break;
-	}
-	return <Label color={color} size="big" content={status} />
+  let color = 'grey'
+  switch (status) {
+    case todoStatus.NEW:
+      color = 'red'
+      break
+    case todoStatus.ONGOING:
+      color = 'yellow'
+    case todoStatus.COMPLETED:
+      color = 'green'
+      break
+    default:
+      break
+  }
+  return (
+    <Label
+      className="Todo-label"
+      color={color}
+      size="medium"
+      content={status}
+    />
+  )
 }
 
 const TodoItem = inject('todoStore')(
@@ -79,14 +86,14 @@ const TodoItem = inject('todoStore')(
       const { id, status, className } = this.props
       const { title, msg, disabled } = this.state
       return (
-        <Form className={`Todo-item ${className ? className : ''}`} size="big">
+        <Form className={`Todo-item ${className ? className : ''}`}>
           <Form.Group>
-						{ status && <StatusLabel status={status} /> }
+            {status && <StatusLabel status={status} />}
             <Form.Input
               type="text"
               name="title"
               value={title}
-							placeholder="Title"
+              placeholder="Title"
               onChange={this._onChange}
               disabled={disabled}
             />
@@ -94,7 +101,7 @@ const TodoItem = inject('todoStore')(
               type="text"
               name="msg"
               value={msg}
-							placeholder="Message"
+              placeholder="Message"
               onChange={this._onChange}
               disabled={disabled}
             />
@@ -103,7 +110,6 @@ const TodoItem = inject('todoStore')(
                   type="button"
                   onClick={this._setToAdd}
                   content="Edit"
-									size="big"
                 />
               : id
                   ? [
@@ -112,21 +118,18 @@ const TodoItem = inject('todoStore')(
                         key="`submit-${id}`"
                         onClick={this._editTodo}
                         content="Submit"
-												size="big"
                       />,
                       <Form.Button
                         type="button"
                         key="`Remove-${id}`"
                         onClick={this._removeTodo}
                         content="Remove"
-												size="big"
                       />
                     ]
                   : <Form.Button
                       type="button"
                       onClick={this._addToDo}
                       content="Add"
-											size="big"
                     />}
           </Form.Group>
         </Form>

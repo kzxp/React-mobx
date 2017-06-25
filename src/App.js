@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { Container } from 'semantic-ui-react'
-import Todo from './random/Todo'
 
 class App extends Component {
   render() {
@@ -16,7 +15,7 @@ class App extends Component {
           Try out Mobx with random stuffs
         </p>
 				<Container className="App-body" text textAlign="center">
-					<Todo />
+					{ this.props.children }
 				</Container>
       </div>
     )
