@@ -1,7 +1,7 @@
-.Todo-view {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap
+.Todo-entry {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .Todo-item + .Todo-item {

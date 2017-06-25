@@ -13,13 +13,11 @@ class App extends Component {
           <h2>Welcome to React + Mobx</h2>
         </div>
         <p className="App-intro">
-          Try out Mobx
+          Try out Mobx with random stuffs
         </p>
-        <div className="App-body">
-          <Container text textAlign="center">
-            <Todo />
-          </Container>
-        </div>
+				<Container className="App-body" text textAlign="center">
+					<Todo />
+				</Container>
       </div>
     )
   }
