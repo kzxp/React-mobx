@@ -1,42 +1,29 @@
 import React from 'react'
+import _ from 'lodash'
 import ReactDOM from 'react-dom'
 import { Switch, Route } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { Provider } from 'mobx-react'
-import App from './App'
+import Application from './Application'
 import registerServiceWorker from './registerServiceWorker'
-import './index.css'
-import 'semantic-ui-css/semantic.min.css'
+import './styles/main.css'
 import * as stores from './stores'
-import { Menu } from 'semantic-ui-react'
-
-import Todo from './random/Todo'
-
-const CustomLink = ({ label, to, activeOnlyWhenExact }) => (
-  <Route
-    path={to}
-    exact={activeOnlyWhenExact}
-    children={({ match }) => (
-      <Menu.Item className={match ? 'active' : ''} as={Link} to={to}>
-        {label}
-      </Menu.Item>
-    )}
-  />
-)
+import routes from './routes'
 
 ReactDOM.render(
   <Provider {...stores}>
     <BrowserRouter>
-      <App>
-        <Menu pointing secondary size="massive">
-          <CustomLink to="/" activeOnlyWhenExact={true} label="Todo" />
-					<CustomLink to="/not-yet" activeOnlyWhenExact={true} label="..." />
-        </Menu>
+      <Application>
         <Switch>
-          <Route exact path="/" component={Todo} />
-					 <Route component={() => <div>404</div>} />
+          {_.map(routes, v => <Route {...v} key={v.name} />)}
+          <Route
+            component={({ location }) =>
+              <div>
+                404 {location.pathname}
+              </div>}
+          />
         </Switch>
-      </App>
+      </Application>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
