@@ -1,4 +1,4 @@
-# React-mobx
-Try out mobx
+# React-random
+Try out everything
 
 Todo
