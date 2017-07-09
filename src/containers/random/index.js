@@ -13,7 +13,10 @@ const renderRoute = path => ({ name, component: Component }) =>
     exact
     key={name}
     path={path}
-    render={props => <Component {...props} />}
+    render={props =>
+      <BoxWithH2 heading={name}>
+        <Component {...props} />
+      </BoxWithH2>}
   />
 
 const Random = ({ match, children }) =>

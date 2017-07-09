@@ -82,44 +82,45 @@ const TodoItem = inject('todoStore')(
       const { id, status, className } = this.props
       const { title, msg, disabled } = this.state
       return (
-        <Box margin={{ bottom: 'small' }}>
-          <Form className={`Todo-item ${className ? className : ''}`}>
-            {/*{status && <StatusLabel status={status} />}*/}
-            <FormField label="Title">
-              <TextInput
-                type="text"
-                name="title"
-                value={title}
-                onChange={this._onChange}
-                disabled={disabled}
-              />
-            </FormField>
-            <FormField label="Message">
-              <TextInput
-                type="text"
-                name="msg"
-                value={msg}
-                placeholder="Message"
-                onChange={this._onChange}
-                disabled={disabled}
-              />
-            </FormField>{' '}
-            <Box direction="row" margin={{ top: 'small' }}>
-              {disabled
-                ? <Button onClick={this._setToAdd} label="Edit" />
-                : id
-                  ? React.Children.toArray([
-                      <Button onClick={this._editTodo} label="Submit" />,
-                      <Button
-                        onClick={this._removeTodo}
-                        critical={true}
-                        label="Remove"
-                      />
-                    ])
-                  : <Button onClick={this._addToDo} label="Add" />}
-            </Box>
-          </Form>
-        </Box>
+        <Form
+          pad={{ vertical: 'small' }}
+          className={`Todo-item ${className ? className : ''}`}
+        >
+          {/*{status && <StatusLabel status={status} />}*/}
+          <FormField label="Title">
+            <TextInput
+              type="text"
+              name="title"
+              value={title}
+              onChange={this._onChange}
+              disabled={disabled}
+            />
+          </FormField>
+          <FormField label="Message">
+            <TextInput
+              type="text"
+              name="msg"
+              value={msg}
+              placeholder="Message"
+              onChange={this._onChange}
+              disabled={disabled}
+            />
+          </FormField>{' '}
+          <Box direction="row" margin={{ top: 'small' }}>
+            {disabled
+              ? <Button onClick={this._setToAdd} label="Edit" />
+              : id
+                ? React.Children.toArray([
+                    <Button onClick={this._editTodo} label="Submit" />,
+                    <Button
+                      onClick={this._removeTodo}
+                      critical={true}
+                      label="Remove"
+                    />
+                  ])
+                : <Button onClick={this._addToDo} label="Add" />}
+          </Box>
+        </Form>
       )
     }
   }
