@@ -15,7 +15,7 @@ import { CustomLink } from 'components/custom'
 
 const Application = ({ children }) =>
   <App className="App">
-    <Header className="App-header" size="large" separator="bottom">
+    <Header className="App-header" size="large" separator="bottom" fixed>
       <Title separator="right">
         <img src={logo} className="App-logo" alt="logo" />
       </Title>
