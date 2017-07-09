@@ -14,16 +14,17 @@ import {
 import { CustomLink } from 'components/custom'
 
 const Application = ({ children }) =>
-  <App centered className="App">
-    <Header className="App-header" size="large">
-      <img src={logo} className="App-logo" alt="logo" />
-      <Title size="large">-_-</Title>
+  <App className="App">
+    <Header className="App-header" size="large" separator="bottom">
+      <Title separator="right">
+        <img src={logo} className="App-logo" alt="logo" />
+      </Title>
       <Menu responsive={true} direction="row" size="large">
         {_.map(routes, v => <CustomLink {...v} key={v.name} />)}
       </Menu>
     </Header>
     <Article className="App-body">
-      <Section justify="center" align="center">
+      <Section pad="medium">
         {children}
       </Section>
     </Article>

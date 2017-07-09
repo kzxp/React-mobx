@@ -90,11 +90,11 @@ module.exports = {
       components: 'components',
       containers: 'containers',
       actions: 'actions',
-      sass: 'sass',
       utils: 'utils',
       reducers: 'reducers',
       constants: 'constants',
-      apiServices: 'apiServices'
+      apiServices: 'apiServices',
+      'mobx-stores': 'mobx-stores'
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

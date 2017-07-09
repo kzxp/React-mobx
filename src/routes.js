@@ -2,10 +2,10 @@ import { asyncComponent } from 'components/custom'
 
 export default [
   {
-    name: 'Home',
+    name: 'Me',
     path: '/',
     exact: true,
-    component: asyncComponent(() => import('./containers/home'))
+    component: asyncComponent(() => import('./containers/me'))
   },
   {
     name: 'Random',

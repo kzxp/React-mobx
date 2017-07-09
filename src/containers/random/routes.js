@@ -3,12 +3,17 @@ import { asyncComponent } from 'components/custom'
 export default [
   {
     name: 'Redux',
-    path: 'redux',
-    component: asyncComponent(() => import('containers/random/redux'))
+    path: 'redux'
   },
   {
-    name: 'Mobx',
+    name: 'MobX',
     path: 'mobx',
-    component: asyncComponent(() => import('containers/random/mobx'))
+    children: [
+      {
+        name: 'Todo list with MobX',
+        path: 'todo',
+        component: asyncComponent(() => import('containers/random/mobx/Todo'))
+      }
+    ]
   }
 ]

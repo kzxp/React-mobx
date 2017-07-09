@@ -3,18 +3,40 @@ import _ from 'lodash'
 import { Route, Redirect } from 'react-router'
 import routes from './routes'
 import { matchPath } from 'react-router-dom'
+import { Box, List, ListItem } from 'grommet'
+
+import { BoxWithH2 } from 'components/common'
+import RandomList from './RandomList'
+
+const renderRoute = path => ({ name, component: Component }) =>
+  <Route
+    exact
+    key={name}
+    path={path}
+    render={props => <Component {...props} />}
+  />
 
 const Random = ({ match, children }) =>
-  <div>
-    <Route exact path={match.url} render={() => <h3>Random</h3>} />
+  <Box>
+    <Route
+      exact
+      path={match.url}
+      render={() =>
+        <BoxWithH2 heading="Random">
+          {_.map(routes, v =>
+            <RandomList
+              key={`list-${v.name}`}
+              {...v}
+              parentPath={`${match.path}/${v.path}`}
+            />
+          )}
+        </BoxWithH2>}
+    />
     {_.map(routes, v =>
-      <Route
-        exact
-        key={v.name}
-        path={`${match.url}/${v.path}`}
-        render={props => <v.component {...props} />}
-      />
+      _.map(v.children, vC =>
+        renderRoute(`${match.path}/${v.path}/${vC.path}`)(vC)
+      )
     )}
-  </div>
+  </Box>
 
 export default Random
