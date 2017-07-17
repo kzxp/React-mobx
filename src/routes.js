@@ -9,7 +9,7 @@ export default [
   },
   {
     name: 'Random',
-    path: '/random',
-    component: asyncComponent(() => import('./containers/random'))
+    path: '/random'
+    // component: asyncComponent(() => import('./containers/random'))
   }
 ]

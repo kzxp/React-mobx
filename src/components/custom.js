@@ -1,15 +1,18 @@
 import React from 'react'
+import classnames from 'classnames'
 import { Route } from 'react-router'
-import { Anchor } from 'grommet'
+import { Link } from 'react-router-dom'
 
-export const CustomLink = ({ exact, name, path, component, ...otherProps }) =>
+export const CustomLink = ({ exact, name, path, component, className, ...otherProps }) =>
   <Route
     exact={exact}
     path={path}
     children={({ match }) =>
-      <Anchor className={match ? 'active' : ''} path={path} {...otherProps}>
-        {name}
-      </Anchor>}
+      <li className={classnames(className, match && 'is-active')} {...otherProps}>
+        <Link to={path}>
+          {name}
+        </Link>
+      </li>}
   />
 
 export const asyncComponent = getComponent => {

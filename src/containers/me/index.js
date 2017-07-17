@@ -1,6 +1,7 @@
 import React from 'react'
-import { Columns, Box, Image, Heading, Timestamp } from 'grommet'
-import { BoxWithH2, BoxWithH3 } from 'components/common'
+import knack from 'knack.png'
+import { Container, Cols, Col } from 'components/layout'
+import { H1Title, H2Subtitle } from 'components/typography'
 
 const transformAge = value => {
   let currentDate = new Date(),
@@ -20,33 +21,26 @@ const transformAge = value => {
 }
 
 const Me = () =>
-  <BoxWithH2 heading="Me">
-    <Columns justify="center">
-      <Columns justify="center">
-        <Box align="center" pad="medium" margin="small" colorIndex="light-2">
-          <Image src="https://via.placeholder.com/350x350" />
-        </Box>
-      </Columns>
-      <Columns style={{ flexDirection: 'column' }} justify="center">
-        <Box
-          direction="column"
-          flex="grow"
-          align="start"
-          pad="medium"
-          margin="small"
-          colorIndex="light-2"
-        >
-          <Heading tag="h3">Name</Heading>
-          Chankaseam Thanaratkitjakarn
-          <Heading tag="h3">Age</Heading>
+  <Container>
+    <Cols className="personal is-desktop">
+      <Col className="left is-one-third-desktop">
+        <figure className="image is-128x128">
+          <img src={knack} />
+        </figure>
+      </Col>
+      <Col className="right is-6-desktop">
+        <H1Title>Name</H1Title>
+        <H2Subtitle>Chankaseam Thanaratkitjakarn</H2Subtitle>
+        <H1Title>Age</H1Title>
+        <H2Subtitle>
           {transformAge('1994-05-20')}
-          <Heading tag="h3">Love</Heading>
-          Sleeping, drinking and Front-end dev.
-          <Heading tag="h3">Skills</Heading>
-          HTML, JavaScript, CSS and etc.
-        </Box>
-      </Columns>
-    </Columns>
-  </BoxWithH2>
+        </H2Subtitle>
+        <H1Title>Love</H1Title>
+        <H2Subtitle>Sleeping, drinking and Front-end dev.</H2Subtitle>
+        <H1Title>Skills</H1Title>
+        <H2Subtitle>HTML, JavaScript, CSS and etc.</H2Subtitle>
+      </Col>
+    </Cols>
+  </Container>
 
 export default Me

@@ -1,3 +1,21 @@
+.App {
+  > div {
+    flex-direction: column;
+  }
+
+  .tabs {
+    margin-bottom: 3.5rem;
+    li {
+      &.is-active {
+        font-weight: bold;
+        a {
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -18,4 +36,24 @@
 
 .App-Menu {
   background-color: #222;
+}
+
+.personal {
+  justify-content: center;
+  .left {
+    display: flex;
+    align-items: center;
+    .image {
+      margin: 0 auto;
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
