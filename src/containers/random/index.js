@@ -7,7 +7,7 @@ import { Columns, Box, List, ListItem } from 'grommet'
 
 import { BoxWithH2 } from 'components/common'
 import { CustomLink } from 'components/custom'
-import RandomList from './RandomList'
+import RandomList from './random-list'
 
 const renderRoute = parentPath => ({ name, path, component: Component }) =>
   <Route

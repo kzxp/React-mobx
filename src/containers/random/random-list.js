@@ -13,7 +13,9 @@ const RandomList = ({ name, parentPath, children }) =>
     heading={name}
     colorIndex="light-2"
     pad="small"
-    margin={{ bottom: 'small' }}
+    margin={{
+      bottom: 'small'
+    }}
   >
     <List>
       {_.map(children, v =>
