@@ -21,26 +21,24 @@ const transformAge = value => {
 }
 
 const Me = () =>
-  <Container>
-    <Cols className="personal is-desktop">
-      <Col className="left is-one-third-desktop">
-        <figure className="image is-128x128">
-          <img src={knack} />
-        </figure>
-      </Col>
-      <Col className="right is-6-desktop">
-        <H1Title>Name</H1Title>
-        <H2Subtitle>Chankaseam Thanaratkitjakarn</H2Subtitle>
-        <H1Title>Age</H1Title>
-        <H2Subtitle>
-          {transformAge('1994-05-20')}
-        </H2Subtitle>
-        <H1Title>Love</H1Title>
-        <H2Subtitle>Sleeping, drinking and Front-end dev.</H2Subtitle>
-        <H1Title>Skills</H1Title>
-        <H2Subtitle>HTML, JavaScript, CSS and etc.</H2Subtitle>
-      </Col>
-    </Cols>
-  </Container>
+  <Cols className="personal is-desktop">
+    <Col className="left">
+      <figure className="image is-128x128">
+        <img src={knack} />
+      </figure>
+    </Col>
+    <Col className="right is-6-desktop">
+      <H1Title>Name</H1Title>
+      <H2Subtitle className="is-spaced">Chankaseam Thanaratkitjakarn</H2Subtitle>
+      <H1Title>Age</H1Title>
+      <H2Subtitle className="is-spaced">
+        {transformAge('1994-05-20')}
+      </H2Subtitle>
+      <H1Title>Love</H1Title>
+      <H2Subtitle className="is-spaced">Sleeping, drinking and Front-end dev.</H2Subtitle>
+      <H1Title>Skills</H1Title>
+      <H2Subtitle className="is-spaced">HTML, JavaScript, CSS and etc.</H2Subtitle>
+    </Col>
+  </Cols>
 
 export default Me

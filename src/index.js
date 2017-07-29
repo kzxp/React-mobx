@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import ReactDOM from 'react-dom'
-import { Switch, Route } from 'react-router'
+import { Switch, Route, Redirect } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Application from './Application'
@@ -19,12 +19,7 @@ ReactDOM.render(
       <Application>
         <Switch>
           {_.map(routes, v => <Route {...v} key={v.name} />)}
-          <Route
-            component={({ location }) =>
-              <div>
-                404 {location.pathname}
-              </div>}
-          />
+          <Redirect to="/random" />
         </Switch>
       </Application>
     </BrowserRouter>

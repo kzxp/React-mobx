@@ -1,46 +1,44 @@
 import React from 'react'
 import _ from 'lodash'
-import { Route, Redirect } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import routes from './routes'
 import { matchPath } from 'react-router-dom'
-import { Columns, Box, List, ListItem } from 'grommet'
-
-import { BoxWithH2 } from 'components/common'
+import { Section, Container, Cols, Col } from 'components/layout'
+import { H1Title } from 'components/typography'
 import { CustomLink } from 'components/custom'
-import RandomList from './random-list'
 
-const renderRoute = parentPath => ({ name, path, component: Component }) =>
-  <Route
-    exact
-    key={name}
-    path={`${parentPath}/${path}`}
-    render={props =>
-      <BoxWithH2 heading={name}>
-        <Component {...props} />
-      </BoxWithH2>}
-  />
+const renderRoute = parentPath => ({ component: Component, ...props }) => {
+  const { name, path } = props
 
-const Random = ({ match, children }) =>
-  <Box>
+  return (
     <Route
       exact
-      path={match.url}
+      key={name}
+      path={`${parentPath}${path}`}
       render={() =>
-        <BoxWithH2 heading="Random">
-          <Columns justify="center" size="large">
-            {_.map(routes, v =>
-              <RandomList
-                key={`list-${v.name}`}
-                {...v}
-                parentPath={`${match.path}/${v.path}`}
-              />
-            )}
-          </Columns>
-        </BoxWithH2>}
+        <H1Title>
+          {name}
+        </H1Title>}
     />
-    {_.map(routes, v =>
-      _.map(v.children, vC => renderRoute(`${match.path}/${v.path}`)(vC))
-    )}
-  </Box>
+  )
+}
+
+const Random = ({ match, children }) =>
+  <Cols>
+    <Col>
+      <Switch>
+        <Route
+          exact={true}
+          path={match.url}
+          component={({ location }) =>
+            <div>
+              Found in {match.url} {location.pathname}
+            </div>}
+        />
+        {_.map(routes, v => _.map(v.children, vC => renderRoute(`${match.url}${v.path}`)(vC)))}
+        <Route render={() => <Redirect to={match.url} />} />
+      </Switch>
+    </Col>
+  </Cols>
 
 export default Random
