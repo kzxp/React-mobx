@@ -1,18 +1,18 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export const H1Title = ({ children, className }) => {
+export const Title = ({ children, tag: Tag, className }) => {
   return (
-    <h1 className={classnames('title', className)}>
+    <Tag className={classnames('title', className)}>
       {children}
-    </h1>
+    </Tag>
   )
 }
 
-export const H2Subtitle = ({ children, className }) => {
+export const Subtitle = ({ children, tag: Tag, className }) => {
   return (
-    <h2 className={classnames('subtitle', className)}>
+    <Tag className={classnames('subtitle', className)}>
       {children}
-    </h2>
+    </Tag>
   )
 }

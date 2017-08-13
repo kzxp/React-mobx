@@ -4,39 +4,32 @@ import { Route, Switch, Redirect } from 'react-router'
 import routes from './routes'
 import { matchPath } from 'react-router-dom'
 import { Section, Container, Cols, Col } from 'components/layout'
-import { H1Title } from 'components/typography'
+import { Title } from 'components/typography'
 import { CustomLink } from 'components/custom'
-
-const renderRoute = parentPath => ({ component: Component, ...props }) => {
-  const { name, path } = props
-
-  return (
-    <Route
-      exact
-      key={name}
-      path={`${parentPath}${path}`}
-      render={() =>
-        <H1Title>
-          {name}
-        </H1Title>}
-    />
-  )
-}
+import { FilterBar, Item } from './components'
 
 const Random = ({ match, children }) =>
-  <Cols>
+  <Cols className="is-multiline">
+    <Col className="is-full">
+      <FilterBar />
+      <Item />
+      <Item />
+      <Item />
+    </Col>
     <Col>
       <Switch>
-        <Route
-          exact={true}
-          path={match.url}
-          component={({ location }) =>
-            <div>
-              Found in {match.url} {location.pathname}
-            </div>}
-        />
-        {_.map(routes, v => _.map(v.children, vC => renderRoute(`${match.url}${v.path}`)(vC)))}
-        <Route render={() => <Redirect to={match.url} />} />
+        {_.map(routes, v =>
+          <Route
+            exact
+            key={name}
+            path={`${match.url}${v.path}`}
+            render={() =>
+              <Title tag="h2">
+                {name}
+              </Title>}
+          />
+        )}
+        <Redirect to={match.url} />
       </Switch>
     </Col>
   </Cols>

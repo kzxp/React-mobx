@@ -7,13 +7,6 @@ export default [
   },
   {
     name: 'MobX',
-    path: '/mobx',
-    children: [
-      {
-        name: 'Todo list with MobX',
-        path: '/todo',
-        component: asyncComponent(() => import('containers/random/mobx'))
-      }
-    ]
+    path: '/mobx'
   }
 ]

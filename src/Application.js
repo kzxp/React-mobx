@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import routes from './routes'
 import { Section, Container } from 'components/layout'
 import { CustomLink } from 'components/custom'

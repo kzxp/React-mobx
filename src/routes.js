@@ -4,7 +4,6 @@ export default [
   {
     name: 'Random',
     path: '/random',
-    exact: true,
     component: asyncComponent(() => import('./containers/random'))
   },
   {

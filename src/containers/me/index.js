@@ -1,7 +1,7 @@
 import React from 'react'
 import knack from 'knack.png'
 import { Container, Cols, Col } from 'components/layout'
-import { H1Title, H2Subtitle } from 'components/typography'
+import { Title, Subtitle } from 'components/typography'
 
 const transformAge = value => {
   let currentDate = new Date(),
@@ -28,16 +28,22 @@ const Me = () =>
       </figure>
     </Col>
     <Col className="right is-6-desktop">
-      <H1Title>Name</H1Title>
-      <H2Subtitle className="is-spaced">Chankaseam Thanaratkitjakarn</H2Subtitle>
-      <H1Title>Age</H1Title>
-      <H2Subtitle className="is-spaced">
+      <Title tag="h1">Name</Title>
+      <Subtitle tag="h2" className="is-spaced">
+        Chankaseam Thanaratkitjakarn
+      </Subtitle>
+      <Title tag="h1">Age</Title>
+      <Subtitle tag="h2" className="is-spaced">
         {transformAge('1994-05-20')}
-      </H2Subtitle>
-      <H1Title>Love</H1Title>
-      <H2Subtitle className="is-spaced">Sleeping, drinking and Front-end dev.</H2Subtitle>
-      <H1Title>Skills</H1Title>
-      <H2Subtitle className="is-spaced">HTML, JavaScript, CSS and etc.</H2Subtitle>
+      </Subtitle>
+      <Title tag="h1">Love</Title>
+      <Subtitle tag="h2" className="is-spaced">
+        Sleeping, drinking and Front-end dev.
+      </Subtitle>
+      <Title tag="h1">Skills</Title>
+      <Subtitle tag="h2" className="is-spaced">
+        HTML, JavaScript, CSS and etc.
+      </Subtitle>
     </Col>
   </Cols>
 
