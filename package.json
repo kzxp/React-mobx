@@ -11,6 +11,7 @@
     "babel-register": "^6.24.1",
     "bulma": "^0.4.3",
     "classnames": "^2.2.5",
+    "enzyme": "^2.9.1",
     "eslint-plugin-lodash": "^2.4.3",
     "lodash": "^4.17.4",
     "mobx": "^3.1.16",
@@ -68,6 +69,7 @@
     "promise": "7.1.1",
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
+    "storybook-addon-specifications": "^2.1.1",
     "style-loader": "0.17.0",
     "sw-precache-webpack-plugin": "0.9.1",
     "url-loader": "0.5.8",
@@ -105,7 +107,8 @@
     "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
-    }
+    },
+    "modulePaths": ["src"]
   },
   "babel": {
     "presets": ["react-app"],

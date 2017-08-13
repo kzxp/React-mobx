@@ -1,6 +1,8 @@
 import { UI_LOADING, UI_LOADED, LOGGED_IN, LOGGED_OUT } from 'constants'
 
-const appReducer = (state = { loading: true, user: {} }, { type, payload }) => {
+export const initialState = { loading: true, user: {} }
+
+const appReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case UI_LOADING:
       return { ...state, loading: true }

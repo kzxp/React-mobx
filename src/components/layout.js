@@ -1,9 +1,9 @@
 import React from 'react'
 import classnames from 'classnames'
 
-export const Hero = ({ HeroHeader, children, className }) => {
+export const Hero = ({ HeroHeader, children, className, ...otherProps }) => {
   return (
-    <section className={classnames('hero', className)}>
+    <section className={classnames('hero', className)} {...otherProps}>
       <div className="hero-body">
         {children}
       </div>

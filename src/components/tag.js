@@ -3,7 +3,7 @@ import classnames from 'classnames'
 
 export const Tag = ({ children, className }) => {
   return (
-    <span class={classname('tag', className)}>
+    <span className={classnames('tag', className)}>
       {children}
     </span>
   )
