@@ -1,5 +1,3 @@
-import { asyncComponent } from 'components/custom'
-
 export default [
   {
     name: 'Redux',

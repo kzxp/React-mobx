@@ -7,7 +7,7 @@ const Application = ({ children }) =>
   <div>
     <div className="tabs is-light is-centered is-large">
       <ul>
-        {_.map(routes, v => <CustomLink {...v} key={v.name} />)}
+        {routes.map(v => <CustomLink {...v} key={v.name} />)}
       </ul>
     </div>
     <Section className="app">

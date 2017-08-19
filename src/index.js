@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import ReactDOM from 'react-dom'
 import { Switch, Route, Redirect } from 'react-router'
 import { BrowserRouter, Link } from 'react-router-dom'
@@ -18,8 +17,8 @@ ReactDOM.render(
     <BrowserRouter>
       <Application>
         <Switch>
-          {_.map(routes, v => <Route {...v} key={v.name} />)}
-          <Redirect to="/random" /> 
+          {routes.map(v => <Route {...v} key={v.name} />)}
+          <Redirect to="/random" />
         </Switch>
       </Application>
     </BrowserRouter>

@@ -23,6 +23,7 @@
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
+    "react-test-renderer": "^15.6.1",
     "recompose": "^0.23.5",
     "redux": "^3.7.1",
     "redux-actions": "^2.2.1",
@@ -30,7 +31,8 @@
     "redux-saga": "^0.15.4",
     "reselect": "^3.0.1",
     "rxjs": "^5.4.2",
-    "serve": "^5.2.2"
+    "serve": "^5.2.2",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "@storybook/react": "^3.1.9",
@@ -91,8 +93,13 @@
     "build-storybook": "build-storybook"
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
-    "setupFiles": ["<rootDir>/config/polyfills.js", "<rootDir>/config/jest/setup.js"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest/setup.js"
+    ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -104,15 +111,23 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["src"]
+    "modulePaths": [
+      "src"
+    ]
   },
   "babel": {
-    "presets": ["react-app"],
-    "plugins": ["transform-decorators-legacy"]
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -14,8 +14,9 @@ const transformAge = value => {
     birthDay = birthDate.getDate(),
     age = currentYear - birthYear
 
-  if (birthMonth > currentMonth) age--
-  else if (birthMonth === currentMonth && birthDay > currenDay) age--
+  if (birthMonth > currentMonth || (birthMonth === currentMonth && birthDay > currenDay)) {
+    age--
+  }
 
   return age + ' years old'
 }
