@@ -31,11 +31,22 @@
 }
 
 .random {
+  .card {
+    transition: transform 0.08s ease-in;
+    transform: scale(1);
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      transition: transform 0.08s ease-in;
+      transform: scale(1.0725);
+    }
+  }
   .action {
     position: fixed;
-    bottom: $size-7;
+    // bottom: $size-7;
     right: 20px;
-    background: $white;
+    // background: $white;
   }
   .button {
     min-width: 160px;
