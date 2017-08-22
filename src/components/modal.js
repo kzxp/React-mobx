@@ -37,9 +37,10 @@ const ModalClose = ({ className, ...otherProps }) => {
 
 export const HistoryModal = compose(
   withHandlers({
-    toggleModal: ({ history }) => e => {
+    toggleModal: ({ history, forwardLink }) => e => {
       e.stopPropagation()
-      history.goBack()
+      console.log('history', history)
+      history.push(forwardLink)
     }
   })
 )(Modal)

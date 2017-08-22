@@ -125,6 +125,7 @@ const Random = ({ match, children, isLogin = true }) =>
           active={true}
           closeBtn={true}
           contentLabel="randomModal"
+          forwardLink={match.url}
           {...props}
         >
           {' '}<Card>
