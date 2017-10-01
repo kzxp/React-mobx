@@ -1,20 +1,41 @@
-import React, { Component } from 'react'
+import React from 'react'
+import _ from 'lodash'
+import { Route, Link } from 'react-router-dom'
+import { CODE } from 'CONSTANTS'
+import availableChunk from 'containers/code/available-chunk'
 import routes from './routes'
-import { Section, Container } from 'components/layout'
+import { Hero, Container } from 'components/layout'
 import { CustomLink } from 'components/custom'
 
-const Application = ({ children }) =>
-  <div>
-    <div className="tabs is-light is-centered is-large">
-      <ul>
-        {routes.map(v => <CustomLink {...v} key={v.name} />)}
-      </ul>
-    </div>
-    <Section className="app">
+import { user as UserIcon } from 'ti-icons'
+
+import ChevronLeftIcon from 'react-icons/lib/ti/chevron-left'
+
+const Application = ({ children }) => (
+  <Hero
+    key="app"
+    className="app"
+    header={() => (
       <Container>
-        {children}
+        <div className="tabs is-light is-large">
+          {_.map(availableChunk, ({ component }, key) => (
+            <Route
+              key={key}
+              path={CODE + key}
+              render={() => (
+                <Link className="back" to={CODE}>
+                  <ChevronLeftIcon className="icon is-large" />
+                </Link>
+              )}
+            />
+          ))}
+          <ul className="is-right">{routes.map(v => <CustomLink {...v} key={v.name} />)}</ul>
+        </div>
       </Container>
-    </Section>
-  </div>
+    )}
+  >
+    <Container>{children}</Container>
+  </Hero>
+)
 
 export default Application

@@ -18,7 +18,7 @@ ReactDOM.render(
       <Application>
         <Switch>
           {routes.map(v => <Route {...v} key={v.name} />)}
-          <Redirect to="/random" />
+          <Redirect from="/" to="/me" />
         </Switch>
       </Application>
     </BrowserRouter>

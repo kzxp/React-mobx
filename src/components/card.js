@@ -1,5 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
+import { connect } from 'react-redux'
+import { compose, lifecycle } from 'recompose'
 
 export const Card = ({ children, className, ...otherProps }) => {
   return (
@@ -32,3 +34,5 @@ export const CardFooterItem = ({ children, className, ...otherProps }) => {
     </p>
   )
 }
+
+export const FetchCodeCard = connect((state, { params }) => ({ id: params.id }))(Card)

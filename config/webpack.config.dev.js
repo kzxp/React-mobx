@@ -66,8 +66,7 @@ module.exports = {
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location
-    devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath)
+    devtoolModuleFilenameTemplate: info => path.resolve(info.absoluteResourcePath)
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -92,9 +91,10 @@ module.exports = {
       actions: 'actions',
       utils: 'utils',
       reducers: 'reducers',
-      constants: 'constants',
+      CONSTANTS: 'CONSTANTS',
       apiServices: 'apiServices',
-      'mobx-stores': 'mobx-stores'
+      'mobx-stores': 'mobx-stores',
+      icons: 'icons'
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

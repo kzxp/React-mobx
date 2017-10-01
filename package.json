@@ -20,12 +20,13 @@
     "npm-run-all": "^4.0.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-icons": "^2.2.5",
     "react-modal": "^2.2.4",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-test-renderer": "^15.6.1",
-    "recompose": "^0.23.5",
+    "recompose": "^0.25.1",
     "redux": "^3.7.1",
     "redux-actions": "^2.2.1",
     "redux-observable": "^0.14.1",
@@ -45,6 +46,7 @@
     "babel-plugin-import": "^1.2.1",
     "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-imports": "^1.4.1",
     "babel-preset-env": "^1.5.2",
     "babel-preset-react-app": "^3.0.0",
     "babel-runtime": "6.23.0",
@@ -69,6 +71,7 @@
     "optimize-css-assets-webpack-plugin": "^2.0.0",
     "postcss-flexbugs-fixes": "3.0.0",
     "postcss-loader": "2.0.5",
+    "preload-webpack-plugin": "^2.0.0",
     "promise": "7.1.1",
     "react-dev-utils": "^3.0.0",
     "react-error-overlay": "^1.0.7",
@@ -83,8 +86,8 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar --include-path ./src/styles/main.scss --include-path ./node_modules src/styles/main.scss -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/styles/main.scss -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src/styles/main.scss --include-path ./node_modules src/styles/main.scss -o src/styles",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/styles/main.scss -o src/styles --watch --recursive",
     "start-js": "node scripts/start.js",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && node scripts/build.js",
@@ -94,8 +97,13 @@
     "build-storybook": "build-storybook"
   },
   "jest": {
-    "collectCoverageFrom": ["src/**/*.{js,jsx}"],
-    "setupFiles": ["<rootDir>/config/polyfills.js", "<rootDir>/config/jest/setup.js"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "setupFiles": [
+      "<rootDir>/config/polyfills.js",
+      "<rootDir>/config/jest/setup.js"
+    ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.js?(x)",
       "<rootDir>/src/**/?(*.)(spec|test).js?(x)"
@@ -107,15 +115,36 @@
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
       "^(?!.*\\.(js|jsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
     },
-    "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["src"]
+    "modulePaths": [
+      "src"
+    ]
   },
   "babel": {
-    "presets": ["react-app"],
-    "plugins": ["transform-decorators-legacy"]
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      "transform-decorators-legacy",
+      [
+        "transform-imports",
+        {
+          "fa-icons": {
+            "transform": "react-icons/lib/fa/${member}",
+            "preventFullImport": true
+          },
+          "ti-icons": {
+            "transform": "react-icons/lib/ti/${member}",
+            "preventFullImport": true
+          }
+        }
+      ]
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

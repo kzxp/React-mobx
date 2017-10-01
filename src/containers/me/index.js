@@ -21,7 +21,7 @@ const transformAge = value => {
   return age + ' years old'
 }
 
-const Me = () =>
+const Me = () => (
   <Cols className="personal is-desktop">
     <Col className="left">
       <figure className="image is-128x128">
@@ -47,5 +47,6 @@ const Me = () =>
       </Subtitle>
     </Col>
   </Cols>
+)
 
 export default Me

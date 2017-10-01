@@ -3,17 +3,29 @@ import classnames from 'classnames'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
 
-export const CustomLink = ({ exact, name, path, component, className, ...otherProps }) =>
+export const CustomLink = ({
+  exact,
+  name,
+  path,
+  component,
+  icon: Icon,
+  className,
+  ...otherProps
+}) => (
   <Route
     exact={exact}
     path={path}
-    children={({ match }) =>
+    children={({ match }) => (
       <li className={classnames(className, match && 'is-active')} {...otherProps}>
         <Link to={path}>
+          {' '}
+          <Icon className="icon" />
           {name}
         </Link>
-      </li>}
+      </li>
+    )}
   />
+)
 
 export const asyncComponent = getComponent => {
   return class AsyncComponent extends React.Component {

@@ -10,9 +10,9 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const eslintFormatter = require('react-dev-utils/eslintFormatter')
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const PreloadWebpackPlugin = require('preload-webpack-plugin')
 
 const paths = require('./paths')
 const getClientEnvironment = require('./env')
@@ -70,8 +70,7 @@ module.exports = {
     // We inferred the "public path" (such as / or /my-project) from homepage.
     publicPath: publicPath,
     // Point sourcemap entries to original disk location
-    devtoolModuleFilenameTemplate: info =>
-      path.relative(paths.appSrc, info.absoluteResourcePath)
+    devtoolModuleFilenameTemplate: info => path.relative(paths.appSrc, info.absoluteResourcePath)
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -320,6 +319,10 @@ module.exports = {
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessorOptions: { discardComments: { removeAll: true } }
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      include: 'asyncChunks'
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.

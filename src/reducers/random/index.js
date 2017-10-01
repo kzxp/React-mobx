@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux'
+
 export const initialState = { data: {}, sequence: [] }
 
 const randomReducer = (state = initialState, { type, payload }) => {
@@ -7,4 +9,4 @@ const randomReducer = (state = initialState, { type, payload }) => {
   }
 }
 
-export default combineReducers({})
+export default {}
