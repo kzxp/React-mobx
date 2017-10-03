@@ -1,6 +1,116 @@
 .title {
-  font-size: 1.5rem;
+  font-size: $size-4;
 }
 .subtitle {
-  font-size: 1.75rem;
+  font-size: $size-6 + $size-7;
+}
+
+.loader__wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  top: 200px;
+  .loader {
+    width: $size-1 + $size-3;
+    height: $size-1 + $size-3;
+  }
+}
+
+.tooltip__wrapper {
+  display: inline-block;
+  cursor: pointer;
+  &.is-selected {
+    &:after {
+      content: ' ';
+      position: relative;
+      display: block;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      width: 8px;
+      height: 12px;
+      border-left: 2px solid $light;
+      border-right: 2px solid $light;
+    }
+  }
+  .tooltip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border: 1px solid transparent;
+    box-shadow: $box-shadow;
+    border-radius: 4px;
+    padding: 5px;
+  }
+}
+
+.timeline {
+  @include tablet {
+    justify-content: center;
+  }
+  .left,
+  .right {
+    padding-top: 0px;
+    padding-bottom: 30px;
+  }
+  .left {
+    position: relative;
+    border-right: 1px solid $primary;
+    min-width: 150px;
+    .image {
+      margin: 0 auto;
+    }
+    &:after {
+      content: attr(data-date) ' ';
+      text-align: center;
+      font-size: $size-6;
+      line-height: $size-5;
+      color: white;
+      font-weight: bold;
+      word-spacing: $size-3;
+      position: absolute;
+      width: $size-1 + $size-7;
+      height: $size-1 + $size-7;
+      box-shadow: $box-shadow;
+      border-radius: 50%;
+      background: $danger;
+      top: $size-6 - $size-7;
+      right: -(($size-1 + $size-7) / 2);
+    }
+  }
+  .right {
+    margin-left: $size-3;
+    .price {
+      font-size: $size-4;
+      @include desktop {
+        font-size: $size-2;
+      }
+    }
+  }
+}
+
+.card {
+  &.doing,
+  &.done {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &.doing {
+    &:before {
+      content: 'Doing';
+      position: absolute;
+      color: $dark;
+      font-size: $size-7;
+      text-align: center;
+      background: $white;
+      box-shadow: $box-shadow;
+      transform: rotate(45deg);
+      top: -8px;
+      right: -32px;
+      padding: 20px 0 5px 0;
+      width: 100px;
+      text-transform: uppercase;
+    }
+  }
 }

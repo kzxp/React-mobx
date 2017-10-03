@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { Route } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 
 export const CustomLink = ({
@@ -27,15 +27,21 @@ export const CustomLink = ({
   />
 )
 
+const Loader = () => (
+  <div className="loader__wrapper">
+    <div className="loader" />
+  </div>
+)
+
 export const asyncComponent = getComponent => {
   return class AsyncComponent extends React.Component {
-    static Component = null
-    state = { Component: AsyncComponent.Component }
+    static Component = Loader
+    state = { Component: AsyncComponent.Component, isLoaded: false }
     componentWillMount() {
-      if (!this.state.Component) {
+      if (!this.state.isLoaded) {
         getComponent().then(({ default: Component }) => {
           AsyncComponent.Component = Component
-          this.setState({ Component })
+          this.setState({ Component, isLoaded: true })
         })
       }
     }
@@ -48,3 +54,10 @@ export const asyncComponent = getComponent => {
     }
   }
 }
+
+export const SwitchWithRedirect = ({ children, to }) => (
+  <Switch>
+    {children}
+    <Redirect from="/" to={to} />
+  </Switch>
+)

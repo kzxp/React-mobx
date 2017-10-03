@@ -1,3 +1,3 @@
-import { user, code } from 'ti-icons'
+import { user, code, mail } from 'ti-icons'
 
-export { user, code }
+export { user, code, mail }

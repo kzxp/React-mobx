@@ -25,6 +25,10 @@ export const Cols = ({ children, className }) => {
   return <div className={classnames('columns', className)}>{children}</div>
 }
 
-export const Col = ({ children, className }) => {
-  return <div className={classnames('column', className)}>{children}</div>
+export const Col = ({ children, className, ...otherProps }) => {
+  return (
+    <div className={classnames('column', className)} {...otherProps}>
+      {children}
+    </div>
+  )
 }

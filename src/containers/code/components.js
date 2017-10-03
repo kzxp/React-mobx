@@ -19,16 +19,20 @@ export const FilterBar = () => {
 export const Item = ({ match, history }) =>
   [...new Array(1)]
     .map(() => ({
-      title: 'Redux' + Math.round(Math.random() * Date.now()).toString(6),
+      title: 'Fun friday memo',
       createdDate: new Date().toDateString(),
       content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.',
-      tag: [{ color: 'primary', text: 'Redux' }, { color: 'light', text: 'test' }],
+        'Use to memo fun friday expense and play around with Chrome camera API to capture image from device. <br> <strong>*Works only on android</strong>',
+      tag: [
+        { color: 'primary', text: 'Redux' },
+        { color: 'primary', text: 'Chrome' },
+        { color: 'primary', text: 'Hobby' }
+      ],
       to: '/FunFridayMemo'
     }))
     .map(({ title, createdDate, content, to, tag }, index) => (
       <Col key={index} className="is-one-third-tablet">
-        <Card onClick={() => history.push(match.url + to)}>
+        <Card className="doing" onClick={() => history.push(match.url + to)}>
           <CardContent>
             <div className="media">
               <div className="media-left">
@@ -45,7 +49,7 @@ export const Item = ({ match, history }) =>
                 </Subtitle>
               </div>
             </div>
-            <div className="content">{content}</div>
+            <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
             <div>
               {tag.map(({ color, text }, index) => (
                 <Tag className={`is-${color}`} key={`tag-${index}`}>

@@ -4073,6 +4073,10 @@ ignore@^3.2.0:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.5.tgz#c4e715455f6073a8d7e5dae72d2fc9d71663dba6"
 
+image-capture@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/image-capture/-/image-capture-0.3.4.tgz#bdbbd77ef4b15de60e6db2becad17a1e39186276"
+
 immutable@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"

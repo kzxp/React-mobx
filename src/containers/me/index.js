@@ -2,6 +2,7 @@ import React from 'react'
 import knack from 'knack.png'
 import { Container, Cols, Col } from 'components/layout'
 import { Title, Subtitle } from 'components/typography'
+import { Contact } from './components'
 
 const transformAge = value => {
   let currentDate = new Date(),
@@ -45,6 +46,7 @@ const Me = () => (
       <Subtitle tag="h2" className="is-spaced">
         HTML, JavaScript, CSS and etc.
       </Subtitle>
+      <Contact />
     </Col>
   </Cols>
 )
