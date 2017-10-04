@@ -24,3 +24,4 @@ README.md
 .firebaserc
 firebase.json
 /.vscode
+/src/config.js
