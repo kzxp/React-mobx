@@ -1,10 +1,24 @@
 import React from 'react'
+import fp from 'lodash/fp'
+import { Route } from 'react-router'
+import { compose, branch, renderComponent } from 'recompose'
+import { connect } from 'react-redux'
 import { Col } from 'components/layout'
 import { Card, CardContent } from 'components/card'
 import { Field, Control, Input } from 'components/form'
 import { Tag } from 'components/tag'
 import { Title, Subtitle } from 'components/typography'
 import { Button } from 'components/button'
+import { Progress } from 'components/progress'
+import { Loader } from 'components/loader'
+import availableChunk from './available-chunk'
+
+import {
+  getSequenceByKey,
+  getPerCodeData,
+  getIsSomeDataFetching,
+  getMappedCodeDataWithoutComponent
+} from 'selectors'
 
 export const FilterBar = () => {
   return (
@@ -16,51 +30,64 @@ export const FilterBar = () => {
   )
 }
 
-export const Item = ({ match, history }) =>
-  [...new Array(1)]
-    .map(() => ({
-      title: 'Fun friday memo',
-      createdDate: new Date().toDateString(),
-      content:
-        'Use to memo fun friday expense and play around with Chrome camera API to capture image from device. <br> <strong>*Works only on android</strong>',
-      tag: [
-        { color: 'primary', text: 'Redux' },
-        { color: 'primary', text: 'Chrome' },
-        { color: 'primary', text: 'Hobby' }
-      ],
-      to: '/FunFridayMemo'
-    }))
-    .map(({ title, createdDate, content, to, tag }, index) => (
-      <Col key={index} className="is-one-third-tablet">
-        <Card className="doing" onClick={() => history.push(match.url + to)}>
-          <CardContent>
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-64x64">
-                  <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image" />
-                </figure>
-              </div>
-              <div className="media-content">
-                <Title tag="p" className="is-4">
-                  {title}
-                </Title>
-                <Subtitle tag="p" className="is-6">
-                  {createdDate}
-                </Subtitle>
-              </div>
+export const AllRoutes = compose(
+  connect(state => ({
+    code: getMappedCodeDataWithoutComponent(state),
+    isSomeDataFetching: getIsSomeDataFetching(state)
+  })),
+  branch(({ isSomeDataFetching }) => isSomeDataFetching, renderComponent(Loader))
+)(({ code, match }) => [
+  <Route key="items" exact path={match.url} component={Items} />,
+  ...fp.map(
+    ({ Component, to }, key) => <Route key={key} path={match.url + to} component={Component} />,
+    availableChunk
+  ),
+  ...fp.map(
+    ({}, key) => <Route key={key} path={`${match.url}/${key}`} Component={() => <div>hi</div>} />,
+    code
+  )
+])
+
+export const Items = compose(
+  connect(state => ({
+    sequence: getSequenceByKey(state, 'code')
+  }))
+)(({ sequence, ...props }) => sequence.map(val => <Item key={val} id={val} {...props} />))
+
+export const Item = connect((state, { id }) => ({
+  ...getPerCodeData(state, id)
+}))(({ id, match, history, title, intro, tags, status, Component }) => {
+  const to = fp.getOr(id, 'to', availableChunk[Component])
+
+  return (
+    <Col className="is-half-tablet is-one-third-widescreen">
+      <Card onClick={() => history.push(match.url + to)}>
+        <CardContent>
+          <div className="media">
+            <div className="media-left">
+              <figure className="image is-96x96">
+                <img src="http://bulma.io/images/placeholders/96x96.png" alt="Image" />
+              </figure>
             </div>
-            <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
-            <div>
-              {tag.map(({ color, text }, index) => (
-                <Tag className={`is-${color}`} key={`tag-${index}`}>
-                  {text}
-                </Tag>
-              ))}
+            <div className="media-content">
+              <Title tag="p" className="is-4">
+                {title}
+              </Title>
             </div>
-          </CardContent>
-        </Card>
-      </Col>
-    ))
+          </div>
+          <div className="content" dangerouslySetInnerHTML={{ __html: intro }} />
+          <div>
+            {tags.map(({ color, text }, index) => (
+              <Tag className={`is-${color}`} key={`tag-${index}`}>
+                {text}
+              </Tag>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </Col>
+  )
+})
 
 {
   // import { HistoryModal } from 'components/modal'

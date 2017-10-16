@@ -96,7 +96,10 @@ module.exports = {
       CONSTANTS: 'CONSTANTS',
       apiServices: 'apiServices',
       'mobx-stores': 'mobx-stores',
-      icons: 'icons'
+      icons: 'icons',
+      config: 'config/dev',
+      actions: 'actions',
+      selectors: 'selectors'
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

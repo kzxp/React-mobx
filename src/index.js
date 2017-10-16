@@ -8,21 +8,32 @@ import registerServiceWorker from './registerServiceWorker'
 import './styles/main.css'
 import routes from './routes'
 import configureStore from './stores'
+import { ME } from 'CONSTANTS'
+import { firestoreInit } from 'api-services/firebase'
 
-const initialState = {}
-const store = configureStore(initialState)
+import { initApplication } from 'actions'
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Application>
-        <Switch>
-          {routes.map(v => <Route {...v} key={v.name} />)}
-          <Redirect from="/" to="/me" />
-        </Switch>
-      </Application>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+firestoreInit().then(() => {
+  const initialState = {}
+  const store = configureStore(initialState)
+  store.dispatch(initApplication())
+
+  const favLink = localStorage.getItem('favLink')
+  const redirectTo = favLink ? favLink : ME
+
+  ReactDOM.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Application>
+          <Switch>
+            {routes.map(v => <Route {...v} key={v.name} />)}
+            <Redirect from="/" to={redirectTo} />
+          </Switch>
+        </Application>
+      </BrowserRouter>
+    </Provider>,
+    document.getElementById('root')
+  )
+})
+
 registerServiceWorker()

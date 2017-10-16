@@ -1,25 +1,24 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { CODE } from 'CONSTANTS'
-import _ from 'lodash'
+
+import fp from 'lodash'
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
-import availableChunk from './available-chunk'
 import { Cols, Col } from 'components/layout'
 import { Button } from 'components/button'
 import { CustomLink, SwitchWithRedirect } from 'components/custom'
 
-import { Item } from './components'
+import { AllRoutes } from './components'
 
 import cont from 'constants'
 
-const Code = ({ location, match, children }) => {
+const Code = ({ location, match, children, sequence }) => {
   return (
     <Cols className="code is-multiline">
       <SwitchWithRedirect to={CODE}>
-        <Route exact path={match.url} component={Item} />
-        {_.map(availableChunk, ({ Component }, key) => (
-          <Route key={key} path={match.url + key} component={props => <Component {...props} />} />
-        ))}
+        <AllRoutes match={match} />
       </SwitchWithRedirect>
     </Cols>
   )

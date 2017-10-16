@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { Route, Switch, Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
+import { Loader } from 'components/loader'
 
 export const CustomLink = ({
   exact,
@@ -25,12 +26,6 @@ export const CustomLink = ({
       </li>
     )}
   />
-)
-
-const Loader = () => (
-  <div className="loader__wrapper">
-    <div className="loader" />
-  </div>
 )
 
 export const asyncComponent = getComponent => {

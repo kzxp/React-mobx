@@ -5,9 +5,9 @@ export const Hero = ({ header: Header, children, className, ...otherProps }) => 
   return (
     <section className={classnames('hero', className)} {...otherProps}>
       {Header && (
-        <div className="hero-header">
+        <section className="hero-head">
           <Header />
-        </div>
+        </section>
       )}
       <div className="hero-body">{children}</div>
     </section>

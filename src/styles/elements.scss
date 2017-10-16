@@ -6,10 +6,12 @@
 }
 
 .loader__wrapper {
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: center;
-  top: 200px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   .loader {
     width: $size-1 + $size-3;
     height: $size-1 + $size-3;
@@ -80,12 +82,6 @@
   }
   .right {
     margin-left: $size-3;
-    .price {
-      font-size: $size-4;
-      @include desktop {
-        font-size: $size-2;
-      }
-    }
   }
 }
 

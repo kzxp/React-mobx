@@ -98,7 +98,10 @@ module.exports = {
       reducers: 'reducers',
       constants: 'constants',
       apiServices: 'apiServices',
-      'mobx-stores': 'mobx-stores'
+      'mobx-stores': 'mobx-stores',
+      config: 'config/prod',
+      actions: 'actions',
+      selectors: 'selectors'
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).

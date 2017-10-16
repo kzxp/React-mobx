@@ -1,21 +1,26 @@
 .app {
   min-height: 100vh;
-  .tabs {
-    li {
-      &.is-active {
-        font-weight: bold;
-      }
-      a {
-        border-bottom-width: 8px;
-        .icon {
-          margin-left: -$size-4;
+  .hero-head {
+    .tabs {
+      li {
+        &.is-active {
+          font-weight: bold;
+        }
+        a {
+          border-bottom-width: 8px;
+          .icon {
+            margin-left: -$size-4;
+          }
         }
       }
     }
-
     a {
       &.back {
         padding: 8px 8px 8px 0;
+        .icon {
+          width: $size-1 + $size-5;
+          height: $size-1 + $size-5;
+        }
       }
     }
   }

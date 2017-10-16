@@ -65,16 +65,18 @@ export const withCamera = compose(
     ) => {
       const _devicesInfo = newDevicesInfo ? newDevicesInfo : devicesInfo
 
-      const _selectedDevice = fp.thru(
-        (selectedDevice, _devicesInfo) =>
-          selectedDevice
-            ? selectedDevice
-            : fp.flow(
-                fp.find(({ label }) => label.toLowerCase().includes('back')),
-                fp.thru(() => _devicesInfo),
-                fp.getOr('', '0.deviceId')
-              )(_devicesInfo)
-      )(selectedDevice, _devicesInfo)
+      let _selectedDevice
+      if (selectedDevice) {
+        _selectedDevice = selectedDevice
+      } else {
+        _selectedDevice = fp.flow(
+          fp.find(({ label }) => label.toLowerCase().includes('back')),
+          fp.getOr(_devicesInfo, 'deviceId'),
+          fp.thru(val => (val ? val : fp.getOr('', '0.deviceId')(val)))
+        )(_devicesInfo)
+      }
+
+      console.log('DeviceId: ', _selectedDevice)
 
       if (rawMediaStream) {
         rawMediaStream.getTracks().forEach(track => {
