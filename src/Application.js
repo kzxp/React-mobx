@@ -19,17 +19,14 @@ const Application = ({ children }) => (
       <Container>
         <Cols className="is-mobile is-gapless">
           <Col>
-            {_.map(availableChunk, ({ name }, key) => (
-              <Route
-                key={key}
-                path={CODE + key}
-                render={({ match }) => (
-                  <Link className="back" to={CODE}>
-                    <ChevronLeftIcon className="icon" />
-                  </Link>
-                )}
-              />
-            ))}
+            <Route
+              path={`${CODE}/:id`}
+              render={({ match }) => (
+                <Link className="back" to={CODE}>
+                  <ChevronLeftIcon className="icon" />
+                </Link>
+              )}
+            />
           </Col>
           <Col className="is-narrow">
             <div className="tabs is-light">

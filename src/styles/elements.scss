@@ -110,3 +110,21 @@
     }
   }
 }
+
+.editorClassName {
+  @extend .textarea;
+}
+
+.toolbarClassName,
+.editorClassName {
+  &:active,
+  &:hover,
+  &:focus {
+    border: 1px solid $input-border-color;
+    box-shadow: none;
+  }
+}
+
+.modal-content {
+  overflow: visible;
+}

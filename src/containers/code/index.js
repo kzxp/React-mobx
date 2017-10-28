@@ -10,16 +10,14 @@ import { Cols, Col } from 'components/layout'
 import { Button } from 'components/button'
 import { CustomLink, SwitchWithRedirect } from 'components/custom'
 
-import { AllRoutes } from './components'
+import { ModalSwitch } from './components'
 
 import cont from 'constants'
 
-const Code = ({ location, match, children, sequence }) => {
+const Code = ({ children, sequence, ...props }) => {
   return (
     <Cols className="code is-multiline">
-      <SwitchWithRedirect to={CODE}>
-        <AllRoutes match={match} />
-      </SwitchWithRedirect>
+      <ModalSwitch {...props} />
     </Cols>
   )
 }

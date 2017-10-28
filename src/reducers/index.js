@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { DATA } from 'CONSTANTS'
 import app from './app'
 import createDataReducer from './data'
+import codeReducers from 'containers/code/reducers'
 
 export default function createReducer(asyncReducers) {
   const dataReducers = DATA.reduce(
@@ -12,6 +13,7 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     app,
     ...dataReducers,
+    ...codeReducers,
     ...asyncReducers
   })
 }

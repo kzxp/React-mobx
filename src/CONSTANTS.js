@@ -21,11 +21,7 @@ export const FETCH_DATA = 'FETCH_DATA'
 
 export const CHANGE_CODE = 'CHANGE_CODE'
 
-export const CREATE_BLOG = 'CREATE_BLOG'
-export const EDIT_BLOG = 'DELETE_BLOG'
-export const DELETE_BLOG = 'DELETE_BLOG'
-export const UPDATE_BLOG = 'UPDATE_BLOG'
-export const SUBMIT_BLOG = 'UPDATE_BLOG'
+export const EDIT_DRAFT = 'EDIT_DRAFT'
 
 //Path
 export const ME = '/me'
